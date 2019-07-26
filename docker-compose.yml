@@ -1,19 +1,29 @@
 version: '3'
 services:
   discovery:
-    build: discovery-server/.
-    ports:
-      - "8761:8761"
+    image: discoveryservice
+    expose:
+      - "8761"
+    networks:
+      - internal
   movie-catalog:
-    build: movie-catalog-service/.
+    image: movie-catalog-service
     ports:
       - "8081:8081"
+    networks:
+      - internal
   movie-info:
-    build: movie-info-service/.
-    ports:
-      - "8082:8082"
+    image: movie-info-service
+    expose:
+      - "8082"
+    networks:
+      - internal
   movie-data:
-    build: ratings-data-service/.
-    ports:
-      - "8083:8083"
-  
+    image: ratings-data-service
+    expose:
+      - "8083"
+    networks:
+      - internal
+networks:
+  internal:
+    driver: bridge
