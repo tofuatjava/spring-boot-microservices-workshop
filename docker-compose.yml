@@ -6,19 +6,19 @@ services:
       - "8761"
     networks:
       - internal
-  movie-catalog:
+  movie-catalog-service:
     image: movie-catalog-service
     ports:
       - "8081:8081"
     networks:
       - internal
-  movie-info:
+  movie-info-service:
     image: movie-info-service
     expose:
       - "8082"
     networks:
       - internal
-  movie-data:
+  ratings-data-service:
     image: ratings-data-service
     expose:
       - "8083"
