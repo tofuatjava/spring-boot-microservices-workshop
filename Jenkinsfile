@@ -14,26 +14,33 @@ pipeline {
 
       }
     }
-    stage('docker images') {
+    stage('build docker base image') {
       steps {
         sh 'docker build .'
       }
-	  
-	  steps {
-	    parallel(
-		  discovery: {
+	}
+    stage('build docker service images')	
+	  parallel {
+		stage('discovery') {
+		  steps {
 		    sh 'docker build discovery-server/'
-		  },
-		  movie-catalog: {
+		  }
+		}
+		stage('movie-catalog') {
+		  steps {
 		    sh 'docker build movie-catalog-service/'
-		  },
-		  movie-info: {
+	      }
+		}
+		stage('movie-info') {
+		  steps {
 		    sh 'docker build movie-info-service/'
-		  },
-		  ratings: {
+		  }
+		}
+		stage('ratings') {
+		  steps {
 		    sh 'docker build ratings-data-service/'
 		  }
-		)
+		}
       }
     }
   }
