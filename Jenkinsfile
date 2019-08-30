@@ -19,7 +19,7 @@ pipeline {
         sh 'docker build .'
       }
 	}
-    stage('build docker service images')	
+    stage('build docker service images') {
 	  parallel {
 		stage('discovery') {
 		  steps {
