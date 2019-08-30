@@ -14,5 +14,10 @@ pipeline {
 
       }
     }
+    stage('docker openJDK image') {
+      steps {
+        sh 'docker build .'
+      }
+    }
   }
 }
