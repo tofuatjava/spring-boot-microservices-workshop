@@ -20,7 +20,7 @@ pipeline {
       }
 	  
 	  steps {
-	    parallel {
+	    parallel(
 		  discovery: {
 		    sh 'docker build discovery-server/'
 		  },
@@ -33,7 +33,7 @@ pipeline {
 		  ratings: {
 		    sh 'docker build ratings-data-service/'
 		  }
-		}
+		)
       }
     }
   }
