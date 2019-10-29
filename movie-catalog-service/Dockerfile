@@ -1,4 +1,4 @@
-FROM alpine-jdk:base
+FROM voestalpine-openjdk11
 
 MAINTAINER thomas.fuerer@voestalpine.com
 
