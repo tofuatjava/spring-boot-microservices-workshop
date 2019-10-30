@@ -1,10 +1,12 @@
 FROM voestalpine-openjdk11
 
-MAINTAINER thomas.fuerer@voestalpine.com
+LABEL MAINTAINER=thomas.fuerer@voestalpine.com
 
-COPY target/ratings-data-service-0.0.1-SNAPSHOT.jar /opt/lib/
+COPY target/ratings-data-service-*.jar /opt/lib/
+
+RUN mv /opt/lib/ratings-data-service-*.jar /opt/lib/ratings-data-service.jar
 
 EXPOSE 8083
 
 ENTRYPOINT ["/usr/bin/java"]
-CMD ["-jar", "/opt/lib/ratings-data-service-0.0.1-SNAPSHOT.jar"]
+CMD ["-jar", "/opt/lib/ratings-data-service.jar"]

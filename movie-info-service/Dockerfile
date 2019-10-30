@@ -1,10 +1,12 @@
 FROM voestalpine-openjdk11
 
-MAINTAINER thomas.fuerer@voestalpine.com
+LABEL MAINTAINER=thomas.fuerer@voestalpine.com
 
-COPY target/movie-info-service-0.0.1-SNAPSHOT.jar /opt/lib/
+COPY target/movie-info-service-*.jar /opt/lib/
+
+RUN mv /opt/lib/movie-info-service-*.jar /opt/lib/movie-info-service.jar
 
 EXPOSE 8082
 
 ENTRYPOINT ["/usr/bin/java"]
-CMD ["-jar", "/opt/lib/movie-info-service-0.0.1-SNAPSHOT.jar"]
+CMD ["-jar", "/opt/lib/movie-info-service.jar"]
